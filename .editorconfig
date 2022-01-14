@@ -1,0 +1,157 @@
+# .editorconfig
+# vim: ft=ini
+#------------------------------------------------------------------------------#
+# # https://editorconfig.org/
+# OPTIONS:
+# root                     = true/false
+# charset                  = latin1/utf-8/utf8-bom/utf-16be/utf-16le
+# end_of_line              = lf/cr/crlf
+# indent_size              = uint
+# indent_style             = tab/space
+# insert_final_newline     = true/false
+# tab_width                = indent_size/uint
+# trim_trailing_whitespace = true/false
+#------------------------------------------------------------------------------#
+root = true
+
+# Global Defaults
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# CSS :: Markup
+[*.css]
+indent_size = 2
+indent_style = space
+tab_width = 2
+
+# HTML :: Markup
+[*.html]
+indent_size = 2
+indent_style = space
+tab_width = 2
+
+# Jinja :: Markup
+[*.jinja]
+indent_size = 2
+indent_style = space
+tab_width = 2
+
+# JavaScript :: Programming
+[*.js]
+indent_size = 2
+indent_style = space
+tab_width = 2
+
+# PHP :: Programming
+[*.{inc,php,phps}]
+indent_size = 4
+indent_style = space
+tab_width = 4
+
+# Python :: Programming
+[*.py]
+indent_size = 4
+indent_style = tab
+tab_width = 4
+
+# SQL :: Programming
+[*.sql]
+indent_size = 2
+indent_style = tab
+tab_width = 2
+
+# Shell :: Programming
+[*.{bash,sh,zsh}]
+indent_size = 2
+indent_style = tab
+tab_width = 2
+
+# Batchfile :: Progamming
+[*.{bat,cmd}]
+end_of_line = crlf
+indent_size = 4
+indent_style = tab
+tab_width = 4
+
+# PowerShell :: Programming
+[*.{ps1,psd1,psm1}]
+end_of_line = crlf
+indent_size = 4
+indent_style = space
+tab_width = 4
+
+# ReStructuredText :: Prose
+[*.rst]
+indent_size = 2
+indent_style = space
+tab_width = 2
+
+# Data :: Serialized
+[*.{json,toml,xml,yml}]
+indent_size = 2
+indent_style = space
+tab_width = 2
+
+# Data :: Tabular
+[*.csv]
+insert_final_newline = false
+
+# Data :: Tabular
+[*.tsv]
+indent_style = tab
+insert_final_newline = false
+
+# INI :: Data
+[*.{cfg,ini}]
+indent_size = 2
+indent_style = tab
+tab_width = 2
+
+# Conf :: Data
+[*.conf]
+indent_size = 2
+indent_style = tab
+tab_width = 2
+
+# Certificate Files
+[*.{crt,key,pem,rsa,srl}]
+indent_size = 4
+indent_style = space
+tab_width = 4
+max_line_length = 64
+
+# Git :: Data
+[{*.diff,patch}]
+trim_trailing_whitespace = false
+
+# Shell :: env :: Programming
+[*.{env,flaskenv}]
+indent_size = 2
+indent_style = tab
+tab_width = 2
+
+# Ignore-List :: Data
+[*.*ignore]
+indent_size = 2
+indent_style = tab
+tab_width = 2
+
+# Shell :: Run Commands :: Programming
+[*.*rc]
+indent_size = 2
+indent_style = tab
+tab_width = 2
+
+# Dockerfile :: Programming
+[Dockerfile]
+indent_size = 4
+indent_style = space
+tab_width = 4
+
+[requirements.txt]
+indent_size = 4
+indent_style = space
+tab_width = 4

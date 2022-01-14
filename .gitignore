@@ -1,0 +1,180 @@
+# vim: set ft=gitignore
+#------------------------------------------------------------------------------#
+# File and Folder Ignore List
+#------------------------------------------------------------------------------#
+notes/
+
+# Instance is only commented out for example purposes
+# Always hide instance because it contains your sensitive configuration settings
+#- instance/
+
+# Project :: Logs
+logs/
+*.log
+
+# Database :: SQL :: SQLite3
+# SQLite3 files
+*.sqlite
+*.sqlite-journal
+
+# Python :: Virtual Environments
+# python -m venv .venv
+.venv/
+[Bb]in/
+[Ii]nclude
+[Ll]ib
+[Ll]ib64/
+[Ll]ocal/
+[Ss]cripts/
+pyvenv.cfg
+pip-selfcheck.json
+
+# Python :: byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Python :: distribution / packaging
+.installed.cfg
+.Python
+*.egg
+MANIFEST
+.eggs/
+*.egg-info/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+parts/
+sdist/
+share/python-wheels/
+var/
+wheels/
+
+# Python :: pip
+# installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Python :: Flask
+.webassets-cache
+
+# Python :: pybuilder
+target/
+
+# Python :: pyenv
+.python-version
+
+# Python :: python-dotenv
+# Both filenames (.env / .flaskenv) are assumed defaults for the python-devenv package
+# Note: Commented out for example purposes
+# .env
+# .flaskenv
+
+# Python :: virtualenv
+.venv/
+venv/
+ENV/
+
+# C/C++ shared object library files
+*.so
+*.so.*
+
+# Executables
+*.app
+*.com
+*.exe
+*.out
+
+# Archive files
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.bz2
+*.bzip
+*.gz
+*.iso
+*.jar
+*.lzma
+*.rar
+*.tar
+*.tgz
+*.xz
+*.zip
+
+# Sensitive information files.
+# Declared to prevent accidently uploading them to the repo.
+*.pem
+*.key
+*.der
+*.csr
+*.crt
+*.cert
+*.cer
+*.p7b
+*.crl
+
+# Tools :: LibreOffice
+.~lock.*#
+
+# Tools :: Pycharm
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Tools :: Vim :: Session files
+Session.vim
+# Temporary files
+.netrwhist
+# Auto-generated tag files
+tags
+# Persistent undo
+[._]*.un~
+# Swap files
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# OS :: Linux
+*~
+# Desktop Environment :: KDE
+.directory
+# temporary files which can be created if a process still has a handle open of a deleted file
+.fuse_hidden*
+# .nfs files are created when an open file is removed but is still being accessed
+.nfs*
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+# Kate
+# Kate swap files
+.*.kate-swp
+.swp.*
+
+# OS :: Windows
+# Temporary files
+~$*
+# Dump files
+*.stackdump
+[Dd]esktop.ini
+[Ee]hthumbs.db
+[Tt]humbs.db
+[Tt]humbs.db:encryptable
+# Windows Recycle Bin used on file shares
+$RECYCLE.BIN/
+# Installer files
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+# shortcuts
+*.lnk
+
+# Misc general backup/temp files
+*.bak
+*.tmp
+*.temp

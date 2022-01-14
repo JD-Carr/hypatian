@@ -1,0 +1,41 @@
+# (If applied, this commit will...)
+#   Add = Create a capability e.g. feature, test, dependency.
+#   Drop = Delete a capability e.g. feature, test, dependency.
+#   Fix = Fix an issue e.g. bug, typo, accident, misstatement.
+#   Bump = Increase the version of something e.g. a dependency.
+#   Make = Change the build process, or tools, or infrastructure.
+#   Start = Begin doing something; e.g. enable a toggle, feature flag, etc.
+#   Stop = End doing something; e.g. disable a toggle, feature flag, etc.
+#   Optimize = A change that MUST be just about performance, e.g. speed up code.
+#   Document = A change that MUST be only in the documentation, e.g. help files.
+#   Refactor = A change that MUST be just refactoring.
+#   Reformat = A change that MUST be just format, e.g. indent line, trim space, etc.
+#   Rephrase = A change that MUST be just textual, e.g. edit a comment, doc, etc.
+#   Rearrange: A change that MUST be just arranging, e.g. change layout.
+#   Redraw: A change that MUST be just visual, e.g. change a graphic, image, icon, etc.
+#   Reword: A change that MUST be just textual, e.g. change a comment, label, doc, etc.
+# |<--- Using a Maximum Of 50 Characters     --->|
+
+
+# Explain what this changes and why (avoid "how")
+# Why was this change necessary?
+# How does it address the problem?
+# Are there any side effects?
+# |<---    Try To Limit Each Line to a Maximum Of 72 Characters    --->|
+
+
+# Include a link to the ticket, if any.
+# Provide links or keys to any relevant tickets, articles or other resources
+# Example: - Fixes #32
+# |<--- Try To Limit Each Line to a Maximum Of 72 Characters       --->|
+
+# |<--- COMMIT END --------------------------------------------------->|
+# Remember to
+#    Capitalize the subject line
+#    Use the imperative mood in the subject line
+#    Do not end the subject line with a period
+#    Separate subject from body with a blank line
+#    Use the body to explain what and why vs. how
+#    Be explicit, avoid relative terms, use absolute terms (e.g. last rel. vs rel. 81)
+#
+# vim: ft=gitcommit

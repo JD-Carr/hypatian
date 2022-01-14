@@ -1,0 +1,9 @@
+include requirements.txt
+
+graft hypatian
+
+global-exclude __pycache__
+global-exclude .venv
+global-exclude *.log
+global-exclude *.py[cod]
+global-exclude *.egg-info

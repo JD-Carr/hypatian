@@ -1,0 +1,71 @@
+# B = bugbear
+# E = pycodestyle errors
+# F = flake8 pyflakes
+# W = pycodestyle warnings
+# B9 = bugbear opinions,
+# ISC = implicit str concat
+# Some PEP8 deviations are considered irrelevant to stub files:
+#       E301 expected 1 blank line
+#       E302 expected 2 blank lines
+#       E305 expected 2 blank lines
+#       E501 line too long
+#       E701 multiple statements on one line (colon)
+#       E741 ambiguous variable name
+#       F401 imported but unused
+#       F403 import *' used; unable to detect undefined names
+#       F405 defined from star imports
+#       F822 undefined name in __all__
+
+[flake8]
+accept-encodings = utf-8
+exclude =
+	__pycache__,
+	.git,
+	.venv,
+	build,
+	database,
+	dist,
+	docs,
+	logs
+	notes,
+	schema,
+	scripts,
+	ssl,
+	wheelhouse
+
+# Output
+
+# Increase the verbosity of Flake8’s output.
+verbose = 0
+# Decrease the verbosity of Flake8’s output.
+quiet = 0
+
+format = pylint
+
+# E133: "closing bracket is missing indentation"
+# W191: "indentation contains tabs"
+
+hang-closing = False
+
+ignore = E133,W191
+
+filename = *.py
+show-source = True
+
+statistics = False
+
+indent-size = 4
+max-complexity = 10
+max-line-length = 120
+
+per-file-ignores =
+	__init__.py: F401
+
+# Docstring
+doctests = True
+
+# Specify which files are checked by PyFlakes for doctest syntax.
+include-in-doctest =
+
+# Specify which files are not to be checked by PyFlakes for doctest syntax.
+exclude-in-doctest =

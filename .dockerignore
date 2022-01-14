@@ -1,0 +1,49 @@
+# .dockerignore
+#------------------------------------------------------------------------------#
+# https://docs.docker.com/engine/reference/builder/#dockerignore-file
+#------------------------------------------------------------------------------#
+# Don't send things you don't need to Docker server.
+# Don't upload secrets / keys!
+#
+# RULES:
+# - .dockerignore must be at top-level root context from which you
+#   invoke 'docker build' or 'docker-compose' commands.
+# - .dockerignore affects both ADD and COPY commands.
+# - .dockerignore doesn't match basenames like '.gitignore'
+#   so you need to prefix **/ for recursive matching to be safe
+# - Last Match Wins - you must put more specific whitelisting matches
+#   after the general exclusion pattern
+#------------------------------------------------------------------------------#
+
+# Ignore these folders.
+.git/
+.idea/
+.venv/
+__pycache__/
+build/
+database/
+dist/
+logs/
+notes/
+
+# Ignore these files.
+.dockerignore
+.editorconfig
+.env
+.flaskenv
+.gitattributes
+.gitignore
+docker-compose*.yml
+Dockerfile
+MANIFEST.in
+pyproject.toml
+README.rst
+requirements-dev.txt
+setup.cfg
+.sqlite
+.srl
+.db
+.db.attr
+.crt.pem
+.key.pem
+.der

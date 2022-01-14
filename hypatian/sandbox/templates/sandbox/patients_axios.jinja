@@ -1,0 +1,87 @@
+<!-- templates/sandbox/patients.jinja -->
+{% extends "layout.jinja" %}
+
+{% block header %}
+<h1 class="display-4">Patients</h1>
+{% endblock header %}
+
+{% block content %}
+
+<div id="toolbar"></div>
+
+<table id="table"
+  class="table table-bordered table-hover table-striped"
+  data-search="true"
+  data-advanced-search="true"
+  data-show-fullscreen="true"
+  data-show-refresh="true"
+  data-show-columns="true"
+  data-show-columns-search="true"
+  data-show-columns-toggle-all="true"
+  data-show-pagination-switch="true"
+  data-pagination="true"
+  data-page-number="1"
+  data-page-list="[10, 25, 50, 100, all]"
+  data-id-field="id"
+  data-toggle="table"
+  data-toolbar=".toolbar"
+  style="width:100%">
+</table>
+
+{% endblock %}
+
+{% block datatable_scripts %}
+<script type="text/javascript">
+
+$(function(){console.log("jQuery check")});
+
+var $table = $('#table');
+
+function initTable() {
+  $table.bootstrapTable('destroy').bootstrapTable({
+    columns: [{
+      field: 'id',
+      title: 'ID',
+      align: "center",
+      valign: "middle",
+      formatter: function (value, row, index) {
+        return index + 1;
+      }
+    }, {
+      field: 'name_first',
+      title: 'Firstname',
+      sortable: 'true'
+    }, {
+      field: 'name_last',
+      title: 'Lastname',
+      sortable: 'true'
+    }, {
+      field: 'date_of_birth',
+      title: 'Date of Birth',
+      sortable: 'true'
+    }]
+  });
+};
+
+$(function() {
+  initTable();
+});
+
+$(document).ready( function() {
+  console.log('Document Ready');
+  axios.get('{{ url_for('api.patients_get') }}')
+    .then(function (response) {
+      console.log(response); // handle success
+      myData = response.data.data; // data is the `key` for list of patients
+      console.log(myData);
+      $table.bootstrapTable('load', myData);
+    })
+    .catch(function (error) {
+      console.log(error); // handle error
+    });
+});
+
+console.log('End of Script');
+
+</script>
+{% endblock datatable_scripts %}

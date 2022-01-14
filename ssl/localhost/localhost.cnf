@@ -1,0 +1,38 @@
+[default]
+dir = /var/www/hypatian/ssl/localhost
+
+[req]
+default_bits = 2048
+default_md = sha256
+default_keyfile = $dir/private/localhost.key.pem
+distinguished_name = req_distinguished_name
+encrypt_key = no
+prompt = no
+req_extensions = req_ext
+string_mask = utf8only
+utf8 = yes
+
+[req_distinguished_name]
+countryName = US
+stateOrProvinceName = WA
+localityName = Agoria
+organizationName = Hypatia
+organizationalUnitName = IT Department
+commonName = localhost
+emailAddress = admin@email.com
+
+[req_ext]
+# Extensions to add to a certificate signing request file (localhost.csr)
+basicConstraints = CA:false
+extendedKeyUsage = serverAuth
+keyUsage = digitalSignature,keyEncipherment,dataEncipherment
+subjectAltName = @alt_names
+subjectKeyIdentifier = hash
+
+[alt_names]
+DNS.1 = localhost
+DNS.2 = localhost.hypatia.healthcare
+DNS.3 = test
+IP.1 = 127.0.0.1
+IP.2 = ::1
+IP.3 = 10.0.1.2

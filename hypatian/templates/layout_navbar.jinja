@@ -1,0 +1,19 @@
+<!-- static/layout_navbar.jinja -->
+<!-- global navbar for all pages -->
+<nav class="navbar navbar-expand-md navbar-fixed-top navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">
+      <img class="logo" src="{{ url_for('static', filename='icons/house.svg') }}"/>
+      Hypatian
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <div class="navbar-nav ml-auto">
+        <a class="nav-item nav-link active" href="{{ url_for('main.index') }}">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" href="{{ url_for('demographics.patient_entry') }}">Patient Entry</a>
+        <a class="nav-item nav-link" href="{{ url_for('demographics.patient_card') }}">Patient Card</a>
+    </div> <!-- collapse -->
+  </div> <!-- container-fluid -->
+</nav>

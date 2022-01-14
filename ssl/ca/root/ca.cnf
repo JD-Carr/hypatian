@@ -1,0 +1,119 @@
+# Text :: Data :: INI file
+#------------------------------------------------------------------------------#
+# The [default] section contains global constants that can be referred to from
+# the entire configuration file. It may also hold settings pertaining to more
+# than one openssl command.
+
+# Comment out the next line to ignore configuration errors
+#config_diagnostics = 1
+
+[default]
+ca = root-ca
+dir = /var/www/hypatian/ssl/ca/root
+
+#------------------------------------------------------------------------------#
+# The remainder of the configuration file is used by the openssl ca command.
+# The CA section defines the locations of CA assets, as well as the policies
+# applying to the CA.
+
+[ca]
+default_ca = ca_root
+
+[ca_root]
+# Directory and file locations.
+new_certs_dir    = $dir/newcerts
+serial           = $dir/db/ca.crt.srl
+database         = $dir/db/ca.db.txt
+
+# The root key and root certificate.
+private_key      = $dir/private/ca.key.pem
+certificate      = $dir/certs/ca.crt.pem
+
+# For certificate revocation lists.
+crlnumber        = $dir/db/ca.crl.srl
+crl              = $dir/crl/crl.pem
+crl_extensions   = ca_crl_ext
+default_crl_days = 28
+
+unique_subject   = no
+default_days     = 364
+default_md       = sha256
+policy           = policy_strict
+email_in_dn      = yes
+preserve         = no
+name_opt         = ca_default
+cert_opt         = ca_default
+copy_extensions  = copy
+
+[ca_crl_ext]
+authorityKeyIdentifier = keyid:always
+
+[policy_anything]
+countryName             = optional
+stateOrProvinceName     = optional
+localityName            = optional
+organizationName        = optional
+organizationalUnitName  = optional
+commonName              = supplied
+emailAddress            = optional
+
+[policy_default]
+# Intentionally left blank.
+
+[policy_strict]
+countryName             = match
+stateOrProvinceName     = match
+localityName            = match
+organizationName        = match
+organizationalUnitName  = optional
+commonName              = supplied
+emailAddress            = optional
+
+#------------------------------------------------------------------------------#
+# The next part of the configuration file is used by the openssl req command.
+# It defines the CA's key pair, its DN, and the desired extensions for the CA
+# certificate.
+
+[req]
+attributes = req_attributes
+default_bits = 4096
+default_days = 365
+default_md = sha256
+default_keyfile = $dir/private/ca.key.pem
+distinguished_name = req_distinguished_name
+encrypt_key = no
+prompt = no
+string_mask = utf8only
+utf8 = yes
+req_extensions = req_ca_root_ext
+
+[req_ca_root_ext]
+basicConstraints = critical,CA:true
+keyUsage = critical,cRLSign,keyCertSign
+subjectKeyIdentifier = hash
+
+[req_attributes]
+# Intentionally left blank.
+
+[req_distinguished_name]
+countryName = US
+stateOrProvinceName = WA
+localityName = Agoria
+organizationName = Hypatia
+organizationalUnitName = IT Department
+commonName = root-ca
+emailAddress = admin@email.com
+
+[req_ca_root_x509_ext]
+# Extensions for a typical root CA (`man x509v3_config`).
+subjectKeyIdentifier = hash
+authorityKeyIdentifier = keyid:always,issuer:always
+basicConstraints = critical,CA:true
+keyUsage = critical,cRLSign,keyCertSign
+
+[req_ca_intermediate_x509_ext]
+# Extensions for a typical intermediate CA (`man x509v3_config`).
+subjectKeyIdentifier = hash
+authorityKeyIdentifier = keyid:always,issuer:always
+basicConstraints = critical,CA:true,pathlen:0
+keyUsage = critical,cRLSign,keyCertSign

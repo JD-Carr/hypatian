@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+{# layout.jinja #}
+{# All other templates should extend this one #}
+<html lang="en">
+
+  <head>
+    {% block head %}
+    <meta charset="utf-8">
+    <meta http-equiv='content-type' value='text/html;charset=utf8'>
+    <title>{% block title %} {% endblock title %}</title>
+    <meta name="description" content="{% block meta_description %}{% endblock meta_description %}">
+    <meta name="author" content="First Last">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noarchive, noindex, none, nofollow">
+
+    {# ------------------- #}
+    {# Bootstrap inclusion #}
+    {# ------------------- #}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap-table.css') }}"/>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}"/>
+    {% endblock head %}
+  </head>
+
+  <body>
+    {% block body %}
+
+    {# ------------- #}
+    {# Handle Navbar #}
+    {# ------------- #}
+    {% include "layout_navbar.jinja" %}
+
+    {# ------------- #}
+    {# Handle Header #}
+    {# ------------- #}
+    <header class="header">
+      <div id="header">{% block header %}{% endblock header %}</div>
+    </header>
+
+    {# -------------------- #}
+    {# Handle Flash Message #}
+    {# -------------------- #}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-bs-dismiss="alert" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times</span>
+            </button>
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    {# -------------- #}
+    {# Handle Content #}
+    {# -------------- #}
+    <section class="section">
+      <div class="container" id="content">{% block content %}{% endblock content %}</div>
+    </section>
+
+    {# ------------- #}
+    {# Handle Footer #}
+    {# ------------- #}
+    <footer class=footer>
+      <div id="footer">{% block footer %}{% endblock footer %}</div>
+    </footer>
+
+    {% endblock body %}
+  </body>
+
+  {# ------------ #}
+  {# Script Block #}
+  {# ------------ #}
+  {# Making this a block so that it can be added to by other templates using super #}
+  {% block scripts %}
+    <script> $SCRIPT_ROOT = {{ request.script_root|tojson }};</script>
+
+    <script type="text/javascript" charset="utf8" src="{{ url_for('static', filename='js/jquery-3.6.0.js') }}"></script>
+    <script type="text/javascript" charset="utf8" src="{{ url_for('static', filename='js/axios.js') }}"></script>
+    <script type="text/javascript" charset="utf8" src="{{ url_for('static', filename='js/bootstrap.bundle.js') }}"></script>
+    <script type="text/javascript" charset="utf8" src="{{ url_for('static', filename='js/bootstrap-table.js') }}"></script>
+    <script type="text/javascript" charset="utf8" src="{{ url_for('static', filename='js/bootstrap-table-toolbar.js') }}"></script>
+    <script type="text/javascript" charset="utf8" src="{{ url_for('static', filename='js/bootstrap-table-editable.js') }}"></script>
+
+    {% block datatable_scripts %}
+    {% endblock datatable_scripts %}
+  {% endblock scripts %}
+
+</html>

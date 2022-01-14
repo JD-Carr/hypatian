@@ -1,0 +1,35 @@
+{% extends "layout.jinja" %}
+
+{% block title %} Welcome {% endblock title %}
+
+{% block meta_description %} Index description {% endblock meta_description %}
+
+{% block header %}
+{% if ENV == "development"  %}
+  <div class="alert alert-info">
+    <strong>WARNING!</strong> You are in the development environment.
+  </div>
+{% endif %}
+
+<h1>Hypatian</h1>
+
+{% endblock header %}
+
+{% block content %}
+<nav class="menu">
+  <ul>
+    <li><a href="{{ url_for('main.cfg') }}">Main - Configuration Settings</a></li>
+    <li><a href="{{ url_for('main.item') }}">Main - Get Item</a></li>
+    <li><a href="{{ url_for('main.health') }}">Main - Health</a></li>
+    <li><a href="{{ url_for('main.robots') }}">Main - robots.txt</a></li>
+    <li><a href="{{ url_for('main.deny')}}">Main - Deny</a></li>
+    <li><a href="{{ url_for('auth.register')}}">Auth - Register</a></li>
+    <li><a href="{{ url_for('auth.login')}}">Auth - Login</a></li>
+    <li><a href="{{ url_for('auth.profile')}}">Auth - Profile</a></li>
+    <li><a href="{{ url_for('auth.logout')}}">Auth - Logout</a></li>
+    <li><a href="{{ url_for('auth.secret')}}">Auth - Secret</a></li>
+    <li><a href="{{ url_for('demographics.patient_entry')}}">Demographics - Patient Entry</a></li>
+    <li><a href="{{ url_for('demographics.patients')}}">Demographics - Patients</a></li>
+  </ul>
+</nav>
+{% endblock content %}

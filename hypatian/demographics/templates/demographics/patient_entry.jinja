@@ -1,0 +1,77 @@
+<!-- templates/demographics/patient_entry.jinja -->
+{% extends "layout.jinja" %}
+
+{% block title %}
+Patient Entry
+{% endblock title %}
+
+{% block header %}
+<h1>Create New Patient</h1><br>
+{% endblock header %}
+
+{% block content %}
+<div class="form-wrapper">
+  <form accept-charset="UTF-8" method="POST" id="form-patient-entry" enctype="application/x-www-form-urlencoded">
+    <fieldset class="form-field" form="form-patient-entry">
+      <legend>New Patient Entry</legend><br>
+      {{ form.hidden_tag() }}
+
+      {{ form.name_first.label }}<br>
+      {{ form.name_first(class="form-control", size=64, autofocus=True) }}<br>
+      {% for error in form.name_first.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+      {% endfor %}
+
+      {{ form.name_preferred.label }}<br>
+      {{ form.name_preferred(class="form-control", size=64) }}<br>
+      {% for error in form.name_preferred.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+      {% endfor %}
+
+      {{ form.name_middle.label }}<br>
+      {{ form.name_middle(class="form-control", size=64) }}<br>
+      {% for error in form.name_middle.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+      {% endfor %}
+
+      {{ form.name_last.label }}<br>
+      {{ form.name_last(class="form-control", size=64) }}<br>
+      {% for error in form.name_last.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+      {% endfor %}
+
+      {{ form.date_of_birth.label }}<br>
+      {{ form.date_of_birth() }}<br>
+      {% for error in form.date_of_birth.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+      {% endfor %}
+
+      <!-- example of pulling element id from jinja items -->
+      <p>{{form.submit.id}}</p>
+
+      {{ form.submit(btn="btn btn-primary") }}
+    </fieldset>
+  </form>
+</div> <!-- form-wrapper -->
+{% endblock content %}
+
+{% block datatable_scripts %}
+<script type="text/javascript">
+console.log('Start of Page');
+var $form = $('form');
+
+document.querySelector('form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(e.target).entries());
+  console.log(data);
+  axios.post('{{ url_for('api.patients') }}', data)
+    .then(function (response) {
+      console.log(response); // handle success
+    })
+    .catch(function (error) {
+      console.log(error); // handle error
+    })
+});
+
+</script>
+{% endblock datatable_scripts %}

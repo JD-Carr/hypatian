@@ -1,0 +1,293 @@
+# .gitattributes
+# vim: ft=gitattributes
+# Set git behaviour for files.
+# Verify settings using: 'git check-attr --all -- <pathname>'
+#------------------------------------------------------------------------------#
+# Macro attributes
+# Binary = -diff -merge -text
+[attr]lfs      filter=lfs diff=lfs merge=lfs -text
+[attr]spaces   whitespace=trailing-space,space-before-tab,tabs-in-indent
+[attr]tabs-2   whitespace=trailing-space,space-before-tab,indent-with-non-tab,tabwidth=2
+[attr]tabs-4   whitespace=trailing-space,space-before-tab,indent-with-non-tab,tabwidth=4
+[attr]vendored -diff
+
+#------------------------------------------------------------------------------#
+# SETTINGS (https://git-scm.com/docs/gitattributes)
+#
+# text eol=<lf/crlf>    : always convert line endings to specified on checkout
+# text auto             : let git handle converting to workspace to repo
+# binary                : don't apply line endings or diff
+# diff                  : define a diff driver external or internal
+#   built-in: ada, bibtex, cpp, csharp, css, fortran, fountain, golang, html,
+#               java, matlab, objc, pascal, perl, php, python, ruby, rust, tex
+#------------------------------------------------------------------------------#
+# Settings
+# linguist-language     : provide syntax highlighting for custom files in github
+#
+# built-in: actionscript, apache, apiblueprint applescript, awk, biml, bsl,
+#           c, cfscript, clj, cmake, coffee, elisp, conf, console, cpp,
+#           csharp, css, d, docker, dot, erb, erlang, fortran, glsl, go,
+#           gradle, graphql, groovy, haskell, hcl, ini, java, javascript,
+#           jinja, json, json-doc, llvm, lua, make, markdown, matlab, nginx,
+#           objc, pascal, perl, php, text, powershell, prometheus,
+#           properties, protobuf, puppet, python, qml, ruby, rust, scala,
+#           sed, sql, swift, terraform, tex, toml, typescript, visualbasic,
+#           xml, yaml
+#
+# special: ApacheConf - Apache configuration files
+#          conf - generic configuration files
+#          console - generic terminal shell
+#          diff - unified diffs
+#          escape - escaped content
+#          http - http req and resp
+#          shell - various shell languages
+#------------------------------------------------------------------------------#
+# Linguist Languages
+#------------------------------------------------------------------------------#
+# Text :: Data :: Configuration
+*.cfg linguist-language=INI
+
+# Text :: Data :: Ignore List
+*.*ignore linguist-language=Ignore-List
+
+# Text :: Data :: Serialized
+*.json linguist-language=JSON
+*.toml linguist-language=TOML
+*.yml linguist-language=YAML
+
+# Text :: Data :: Tabular
+*.csv linguist-language=CSV
+
+# Text :: Markup
+*.css linguist-language=CSS
+*.html linguist-language=HTML
+*.jinja linguist-language=Jinja
+
+# Text :: Programming
+*.js linguist-language=JavaScript
+*.py linguist-language=Python
+*.sql linguist-language=SQL
+
+# Text :: Prose
+*.md linguist-documentation linguist-language=Markup
+*.rst linguist-documentation linguist-language=reStructuredText
+
+# Text :: Docker
+.dockerignore linguist-language=Ignore-List
+Dockerfile linguist-language=Dockerfile
+
+# Text :: Editor Config
+.editorconfig linguist-language=EditorConfig
+
+# Text :: Programming :: Shell
+.env linguist-language=Shell
+.env* linguist-language=Shell
+.flaskenv linguist-language=Shell
+.flaskenv* linguist-language=Shell
+
+# Text :: Data :: Apache :: Configuration
+# Declared explicitly because ApacheConf files have unique formatting.
+hypatian.conf linguist-language=ApacheConf
+
+# Test :: Programming :: Apache :: WSGI
+hypatian.wsgi linguist-language=Python
+
+#------------------------------------------------------------------------------#
+# Text Files
+#------------------------------------------------------------------------------#
+* text=auto
+
+# Dotfiles
+*.cfg text eol=lf tabs-2
+*.conf text eol=lf tabs-2
+*.ini text eol=lf tabs-2
+*.*ignore text eol=lf tabs-2
+*.*rc text eol=lf tabs-2
+.bashrc text eol=lf diff=bash tabs-2
+.editorconfig text eol=lf tabs-2
+.env text eol=lf tabs-2
+.env* text eol=lf tabs-2
+.flaskenv text eol=lf tabs-2
+.flaskenv* text eol=lf tabs-2
+.gitattributes text eol=lf
+.gitconfig text eol=lf
+.gitignore text eol=lf
+.gitmodules text eol=lf
+Dockerfile text eol=lf spaces
+
+# Documentation
+*.doc eol=lf diff=astextplain
+*.docx eol=lf diff=astextplain
+*.dot eol=lf diff=astextplain
+*.pdf eol=lf diff=astextplain
+*.rtf eol=lf diff=astextplain
+
+# Text Prose
+*.rst text eol=lf spaces
+*.txt text eol=lf
+
+# Flat data files
+*.csv text eol=lf
+*.tsv text eol=lf
+
+# Plain text files
+*.txt text eol=lf
+
+AUTHORS text
+CHANGELOG text
+CHANGES text
+CONTRIBUTING text
+COPYING text
+*COPYRIGHT* text
+INSTALL text
+LICENSE text
+NEWS text
+*README* text
+TODO text
+
+# Language :: Python
+*.py text eol=lf diff=python tabs-4
+*.wsgi text eol=lf diff=python tabs-4
+
+# Language :: CSS
+*.css text eol=lf diff=css spaces
+
+# Language :: HTML
+*.html text eol=lf diff=html spaces
+
+# Language :: Jinja2
+# HTML+Django
+*.jinja text eol=lf spaces
+
+# Language:: JavaScript
+*.js text eol=lf spaces
+
+# Language :: PHP
+*.inc text eol=lf diff=php spaces
+*.php text eol=lf diff=php spaces
+*.phps text eol=lf diff=php spaces
+
+# Shell :: Unix
+*.bash text eol=lf diff=bash tab-2
+*.sh text eol=lf tab-2
+*.zsh text eol=lf tab-2
+
+# Shell :: Windows
+# These are explicitly windows files and should use crlf
+*.bat text eol=crlf tab-4
+*.cmd text eol=crlf tab-4
+*.ps1 text eol=crlf spaces
+*.psd1 text eol=crlf spaces
+*.psm1 text eol=crlf spaces
+
+# Serialisation files
+*.json text eol=lf spaces
+*.toml text eol=lf spaces
+*.xml text eol=lf spaces
+*.yaml text eol=lf spaces
+*.yml text eol=lf spaces
+
+# Tools :: Git
+*.diff binary
+*.patch binary
+
+#------------------------------------------------------------------------------#
+# Binary files
+#------------------------------------------------------------------------------#
+
+# Archives / Compressed
+*.7z binary
+*.bz2 binary
+*.gz binary
+*.iso binary
+*.jar binary
+*.lz binary
+*.lzma binary
+*.rar binary
+*.sz binary
+*.tar binary
+*.tbz2 binary
+*.tgz binary
+*.tlz binary
+*.zip binary
+
+# Audio
+*.aif binary
+*.aiff binary
+*.it binary
+*.mod binary
+*.mp3 binary
+*.ogg binary
+*.s3m binary
+*.wav binary
+*.xm binary
+
+# Compiled Dynamic Library
+*.dll binary
+*.pdb binary
+*.so binary
+
+# Database files
+*.sqlite binary
+*.sqlite-journal binary
+
+# Executables
+*.exe binary
+
+# Fonts
+*.eot binary
+*.fnt binary
+*.otc binary
+*.otf binary
+*.ttc binary
+*.ttf binary
+*.woff binary
+*.woff2 binary
+
+# Graphics
+*.bmp binary
+*.eps binary
+*.ico binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.gifv binary
+*.png binary
+# SVG treated as text by default.
+*.svg text
+# If you want to treat it as binary,
+# use the following line instead.
+# *.svg binary
+*.tif binary
+*.tiff binary
+
+# Python: binary files
+*.db binary
+*.p binary
+*.pkl binary
+*.pickle binary
+*.pyc binary
+*.pyo binary
+*.pyd binary
+*.whl binary
+
+# Note: .db, .p, and .pkl files are associated
+# with the python modules ``pickle``, ``dbm.*``,
+# ``shelve``, ``marshal``, ``anydbm``, & ``bsddb``
+# (among others).
+
+# Program :: OpenOffice Calc
+# OpenOffice Calc spreadsheet file format
+*.ods  binary
+
+# Program :: Microsoft Excel
+# Microsoft Office Excel spreadsheet file format
+*.xls  binary
+# Microsoft Office Open XML excel file format
+*.xlsx binary
+
+# Misc files
+*.bak binary
+*.lnk binary
+*.temp binary
+*.tmp binary

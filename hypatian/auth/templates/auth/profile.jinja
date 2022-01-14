@@ -1,0 +1,20 @@
+<!-- templates/auth/profile.jinja -->
+{% extends "layout.jinja" %}
+
+{% block title %}
+User Profile
+{% endblock title %}
+
+{% block header %}
+<h1>Welcome {{ current_user.email }}!</h1>
+{% endblock header %}
+
+{% block content %}
+<form action="{{ url_for('auth.profile') }}" method="post" id="form">
+  <fieldset form="jform">
+    {{ form.hidden_tag() }}
+    {{ form.submit() }}
+  </fieldset>
+</form>
+
+{% endblock content %}

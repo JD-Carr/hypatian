@@ -1,0 +1,61 @@
+# vim: ft=yaml
+version: '3.9'
+
+services:
+  test:
+    image: test_hypatian:latest
+    container_name: test_flask
+    hostname: test_flask
+    domainname: hypatian.healthcare
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: test_app
+    env_file: .env
+    environment:
+      - FLASK_SKIP_DOTENV=True
+      - FLASK_ENV=production
+      - FLASK_DEBUG=1
+      - FLASK_SECURE=0
+      - FLASK_TESTING=1
+    working_dir: /var/www/hypatian
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+    stop_grace_period: 1m
+    ports:
+      - target: 1443
+        published: 1443
+        protocol: tcp
+        mode: host
+    expose:
+      - 1443
+    networks:
+      test_net:
+        ipv4_address: 10.0.1.2
+    volumes:
+      - type: volume
+        source: vol_test_logs
+        target: /var/www/hypatian/logs
+        read_only: false
+
+networks:
+  test_net:
+    name: hypatian_test_net
+    driver: bridge
+    enable_ipv6: false
+    internal: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.1.0/24
+          ip_range: 10.0.1.254/24
+          gateway: 10.0.1.1
+          aux_addresses:
+            test: 10.0.1.2
+
+volumes:
+  vol_test_logs:
+    driver: local
+    external: false
+    name: hypatian_test_logs
