@@ -4,7 +4,7 @@
 # Flask Settings
 #-------------------------------------------------------------------------------#
 # Flask-native settings
-# Best exported to environment before running the app.
+# Best exported to environment before running the app, using `python-dotenv`.
 # This file exists for local development.
 # Place these into docker-compose.yml files under `environment:` for test/prod.
 
@@ -28,8 +28,9 @@ FLASK_APP=wsgi.py
 FLASK_RUN_HOST=127.0.0.1
 FLASK_RUN_PORT=5000
 
-#FLASK_RUN_CERT=
-#FLASK_RUN_KEY=
+# These are only needed for a testing environment using SSL.
+# FLASK_RUN_CERT=
+# FLASK_RUN_KEY=
 
 # Flask will detect if any of these files have changed.
 # If it detects a file change, it will restart the app.
@@ -38,7 +39,6 @@ FLASK_RUN_PORT=5000
 #-------------------------------------------------------------------------------#
 # Flask Custom Settings.
 #-------------------------------------------------------------------------------#
-# Non-native variables used by this project for configuration settings.
-# These are not understood by Flask natively.
+# These are not understood by Flask natively, but used in the `config.py` file.
 FLASK_SECURE=0
 FLASK_TESTING=0
