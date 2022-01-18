@@ -1,8 +1,9 @@
 """hypatian.loggers.
 
 Declare the logging configurations for the app
-Not fond of using configfile format
-Setting logs programmatically I find more flexible and easier to adjust
+Not fond of using configfile formats by python
+Setting logs programmatically I find more flexible and easier to adjust given how the project relies on environment
+variables whic are easy to change in the container as needed.
 Programmatically configured is about the same code verbosity
 Flask will add a StreamHandler (default_handler) to hypatian.logger automatically
 During requests, it will write to the stream specified by the WSGI server in environ['wsgi.errors']
