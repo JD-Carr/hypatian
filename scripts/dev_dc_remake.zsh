@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-image=dev_hypatian
+image=dev_flask
 tag=latest
 container=dev_flask
 service=dev

@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-
+# vim: ft=sh
 image=dev_hypatian
 tag=latest
 container=dev_flask
