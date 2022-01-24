@@ -18,6 +18,7 @@
 # Ignore these folders.
 .git/
 .idea/
+.pytest_cache/
 .venv/
 __pycache__/
 build/
@@ -47,3 +48,4 @@ setup.cfg
 .crt.pem
 .key.pem
 .der
+.log
