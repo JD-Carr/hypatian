@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Make sure we're not confused by old, incompletely-shutdown apache/httpd
 # context after restarting the container.  apache/httpd won't start correctly

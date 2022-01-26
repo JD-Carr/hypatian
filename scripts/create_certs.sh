@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Declare project directory here for easy modification per server OS.
-dir="/var/www/hypatian/ssl"
+dir="/srv/hypatian/ssl"
 
 dir_ca_root="${dir}/ca/root"
 dir_ca_root_db="${dir_ca_root}/db"
