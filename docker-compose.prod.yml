@@ -2,22 +2,22 @@
 version: '3.9'
 
 services:
-  test:
-    image: test_hypatian:latest
-    container_name: test_flask
-    hostname: test_flask
+  prod:
+    image: prod_hypatian:latest
+    container_name: prod_flask
+    hostname: prod_flask
     domainname: hypatian.healthcare
     build:
       context: .
       dockerfile: Dockerfile
-      target: test
+      target: prod
     env_file: .env
     environment:
       - FLASK_SKIP_DOTENV=True
       - FLASK_ENV=production
-      - FLASK_DEBUG=1
+      - FLASK_DEBUG=0
       - FLASK_SECURE=1
-      - FLASK_TESTING=1
+      - FLASK_TESTING=0
     working_dir: /var/www/hypatian
     stdin_open: true
     tty: true
@@ -31,31 +31,31 @@ services:
     expose:
       - 1443
     networks:
-      test_net:
-        ipv4_address: 10.0.1.2
+      net:
+        ipv4_address: 10.0.2.2
     volumes:
       - type: volume
-        source: vol_test_logs
+        source: logs
         target: /var/www/hypatian/logs
         read_only: false
 
 networks:
-  test_net:
-    name: hypatian_test_net
+  net:
+    name: hypatian_prod_net
     driver: bridge
     enable_ipv6: false
     internal: true
     ipam:
       driver: default
       config:
-        - subnet: 10.0.1.0/24
-          ip_range: 10.0.1.254/24
-          gateway: 10.0.1.1
+        - subnet: 10.0.2.0/24
+          ip_range: 10.0.2.254/24
+          gateway: 10.0.2.1
           aux_addresses:
-            test: 10.0.1.2
+            test: 10.0.2.2
 
 volumes:
-  vol_test_logs:
+  logs:
     driver: local
     external: false
-    name: hypatian_test_logs
+    name: hypatian_prod_logs

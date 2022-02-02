@@ -3,6 +3,7 @@
 # File and Folder Ignore List
 #------------------------------------------------------------------------------#
 notes/
+wheelhouse/
 
 # Instance is only commented out for example purposes
 # Always hide instance because it contains your sensitive configuration settings

@@ -86,7 +86,7 @@ Dockerfile linguist-language=Dockerfile
 .flaskenv* linguist-language=Shell
 
 # Text :: Data :: Apache :: Configuration
-# Declared explicitly because ApacheConf files have unique formatting.
+# File declared explicitly because ApacheConf files have unique formatting
 hypatian.conf linguist-language=ApacheConf
 
 # Test :: Programming :: Apache :: WSGI

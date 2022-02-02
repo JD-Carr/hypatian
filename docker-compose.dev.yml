@@ -3,14 +3,14 @@ version: '3.9'
 
 services:
   dev:
-    image: dev_hypatian:latest
+    image: dev_flask:latest
     container_name: dev_flask
     hostname: dev_flask
     domainname: hypatian.healthcare
     build:
       context: .
       dockerfile: Dockerfile
-      target: dev_server
+      target: dev
     env_file: .env
     environment:
       - FLASK_SKIP_DOTENV=True

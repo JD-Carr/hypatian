@@ -64,7 +64,6 @@ def seed() -> None:
 		Patient,
 		Product,
 		ProductCategory,
-		TestTable,
 		UnitOfMeasure
 	)
 	db.drop_all()

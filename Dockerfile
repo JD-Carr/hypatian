@@ -22,7 +22,12 @@ RUN apt-get install --quiet --quiet --yes python3
 RUN apt-get install --quiet --quiet --yes python3-dev
 RUN apt-get install --quiet --quiet --yes python3-pip
 RUN apt-get install --quiet --quiet --yes python3-venv
+RUN apt-get install --quiet --quiet --yes sqlite3
 RUN apt-get install --quiet --quiet --yes vim
+
+RUN apt-get clean --quiet --quiet
+RUN apt-get autoremove --quiet --quiet
+RUN rm --recursive --force /var/lib/apt/lists/*
 
 WORKDIR /var/www/hypatian
 COPY ./hypatian ./hypatian
@@ -44,26 +49,8 @@ RUN chmod +x ./create_certs.sh
 RUN ./create_certs.sh
 RUN rm ./create_certs.sh
 
-RUN apt-get clean --quiet --quiet
-RUN apt-get autoremove --quiet --quiet
-RUN rm --recursive --force /var/lib/apt/lists/*
-
 #------------------------------------------------------------------------------#
-FROM base AS test_app
-WORKDIR /var/www/hypatian
-COPY ./requirements-test.txt ./requirements-test.txt
-
-RUN python3 -m pip install -r requirements-test.txt
-RUN rm --force ./requirements-test.txt
-
-#------------------------------------------------------------------------------#
-FROM base AS dev_server
-
-RUN apt-get update --quiet --quiet --yes
-RUN apt-get install --quiet --quiet --yes sqlite3
-RUN apt-get clean --quiet --quiet
-RUN apt-get autoremove --quiet --quiet
-RUN rm --recursive --force /var/lib/apt/lists/*
+FROM base AS dev
 
 WORKDIR /var/www/hypatian
 COPY ./wsgi.py ./
@@ -82,6 +69,14 @@ RUN apt-get clean --quiet --quiet
 RUN apt-get autoremove --quiet --quiet
 RUN rm --recursive --force /var/lib/apt/lists/*
 
+WORKDIR /var/www/hypatian
+COPY ./hypatian.wsgi ./
+COPY ./scripts/apache.sh ./
+
+COPY ./requirements-test.txt ./requirements-test.txt
+RUN python3 -m pip install -r requirements-test.txt
+RUN rm --force ./requirements-test.txt
+
 COPY ./wheelhouse/hypatian-1.0.0-py3-none-any.whl ./
 RUN python -m pip install hypatian-1.0.0-py3-none-any.whl
 RUN rm hypatian-1.0.0-py3-none-any.whl
@@ -89,18 +84,23 @@ RUN rm hypatian-1.0.0-py3-none-any.whl
 RUN mkdir ./logs
 RUN chown --recursive www-data:www-data ./
 
-COPY ./hypatian.conf /etc/apache2/sites-available
-RUN chown --recursive www-data:www-data /etc/apache2/sites-available
+RUN a2dissite 000-default
+RUN rm -rf /etc/apache2/sites-available/000-default.conf
 
 RUN mkdir --parents /var/cache/ssl
 RUN chown --recursive www-data:www-data /var/cache/ssl
 
-RUN a2dissite 000-default
+COPY ./hypatian.conf /etc/apache2/sites-available
+RUN chown --recursive www-data:www-data /etc/apache2/sites-available
 RUN a2ensite hypatian
 RUN a2enmod ssl
 
 #------------------------------------------------------------------------------#
-FROM apache AS test_server
+FROM apache AS test
 
 WORKDIR /var/www/hypatian
-COPY ./hypatian.wsgi ./
+
+#------------------------------------------------------------------------------#
+FROM apache AS prod
+
+WORKDIR /var/www/hypatian

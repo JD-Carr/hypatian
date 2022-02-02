@@ -14,8 +14,7 @@
 # - Last Match Wins - you must put more specific whitelisting matches
 #   after the general exclusion pattern
 #------------------------------------------------------------------------------#
-
-# Ignore these folders.
+# Folders
 .git/
 .idea/
 .pytest_cache/
@@ -27,7 +26,7 @@ dist/
 logs/
 notes/
 
-# Ignore these files.
+# Files
 .dockerignore
 .editorconfig
 .env
